@@ -1,0 +1,8 @@
+all:
+  hosts:
+    win2012:
+      ansible_host: 192.168.1.100
+      ansible_user: dennis
+      ansible_password: "Julia#2021"
+      ansible_connection: winrm
+      ansible_winrm_transport: ntlm
