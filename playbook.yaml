@@ -1,6 +1,8 @@
 ---
-- name: Testar conexão com Windows
+- name: Criar arquivo vazio no Windows
   hosts: all
+
   tasks:
-    - name: Executar win_ping
-      win_ping:
+    - name: Run an executable using win_command
+      win_command: where powershell
+      win_command: C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe 

@@ -1,0 +1,15 @@
+all:
+  hosts:
+    win2012:
+      ansible_host: 192.168.15.102
+      ansible_user: Administrador
+      ansible_password: "<pass>"
+      ansible_connection: winrm
+      ansible_winrm_transport: basic
+      ansible_winrm_port: 5985
+      ansible_winrm_scheme: http
+      ansible_winrm_server_cert_validation: ignore
+      ansible_shell_type: powershell
+      ansible_shell_executable: powershell.exe
+
+# https://docs.ansible.com/ansible/latest/os_guide/windows_winrm.html#what-is-winrm
