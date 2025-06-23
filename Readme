@@ -1,0 +1,7 @@
+Necessário executar no windows 2012:
+
+winrm set winrm/config/service/auth '@{Basic="true"}'
+winrm set winrm/config/service '@{AllowUnencrypted="true"}'
+
+para permitir autenticação não criptografada (utilizar em laboratorio apenas)
+
