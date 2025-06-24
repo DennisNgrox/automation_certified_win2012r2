@@ -1,8 +1,24 @@
----
-- name: Criar arquivo vazio no Windows
-  hosts: all
-
+- name: Copiar arquivo local para host Windows
+  hosts: localhost
+  gather_facts: no
   tasks:
-    - name: Run an executable using win_command
-      win_command: where powershell
-      win_command: C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe 
+    - name: Gerbot para criar o certificado
+      ansible.builtin.shell:
+        cmd: "{{ item }}"
+      loop:
+        - certbot certonly --manual --preferred-challenges dns -d *.spdl.com.br
+        - openssl pkcs12 -export \
+          -out spdl.com.br.pfx \
+          -inkey /etc/letsencrypt/live/spdl.com.br/privkey.pem \
+          -in /etc/letsencrypt/live/spdl.com.br/fullchain.pem \
+          -certfile /etc/letsencrypt/live/spdl.com.br/chain.pem \
+          -certpbe PBE-SHA1-3DES \
+          -keypbe PBE-SHA1-3DES \
+          -nomac
+
+
+    - name: Copiar arquivo local para Windows
+      ansible.builtin.copy:
+        src: /tmp/arquivo_local.txt
+        dest: C:\Users\dennis\Desktop\arquivo_remoto.txt
+      delegate_to: win2012 

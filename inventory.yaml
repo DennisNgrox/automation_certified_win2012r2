@@ -3,7 +3,7 @@ all:
     win2012:
       ansible_host: 192.168.15.102
       ansible_user: Administrador
-      ansible_password: "<pass>"
+      ansible_password: "Julia#2021"
       ansible_connection: winrm
       ansible_winrm_transport: basic
       ansible_winrm_port: 5985
