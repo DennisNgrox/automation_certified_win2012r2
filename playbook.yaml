@@ -6,9 +6,9 @@
       ansible.builtin.shell:
         cmd: "{{ item }}"
       loop:
-        - certbot certonly --manual --preferred-challenges dns -d *.spdl.com.br
+        - certbot certonly --manual --preferred-challenges dns -d *.teste.com.br
         - openssl pkcs12 -export \
-          -out spdl.com.br.pfx \
+          -out teste.com.br.pfx \
           -inkey /etc/letsencrypt/live/spdl.com.br/privkey.pem \
           -in /etc/letsencrypt/live/spdl.com.br/fullchain.pem \
           -certfile /etc/letsencrypt/live/spdl.com.br/chain.pem \
@@ -19,6 +19,6 @@
 
     - name: Copiar arquivo local para Windows
       ansible.builtin.copy:
-        src: /tmp/arquivo_local.txt
+        src: ./teste.com.br.pfx
         dest: C:\Users\dennis\Desktop\arquivo_remoto.txt
       delegate_to: win2012 
